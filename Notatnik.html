@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Notatnik</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .notepad {
+        background-color: #f0f0f0;
+        color: #333;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); 
+        padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+    }
+
+    body.dark-theme .notepad{
+        background-color: #333;
+        color: #f0f0f0;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    h2 {
+      color: #007bff;
+      margin-top: 0;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    #noteForm {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    #noteForm input[type="date"],
+    #noteForm input[type="number"] {
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      flex-grow: 1;
+    }
+
+    #noteForm button {
+      padding: 10px 15px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+
+    #noteForm button:hover {
+      background-color: #0056b3;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+
+    thead th {
+      background-color: #f0f0f0;
+      color: #333;
+      font-weight: bold;
+      padding: 10px;
+      text-align: left;
+      border-bottom: 2px solid #ccc;
+    }
+
+    tbody td {
+      padding: 8px;
+      border-bottom: 1px solid #eee;
+    }
+
+    tfoot td {
+      padding: 10px;
+      font-weight: bold;
+      text-align: right;
+    }
+
+    tfoot td:first-child {
+      text-align: left;
+    }
+
+    .delete-btn {
+      background-color: #dc3545;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .delete-btn:hover {
+      background-color: #c82333;
+    }
+  </style>
+</head>
+<body id="body">
+    <div class="container">
+        <header>
+            <h1>Rvfax.app</h1>
+        </header>
+  <div class="notepad">
+    <h2>Notatnik kosztów</h2>
+    <form id="noteForm">
+      <input type="date" id="date" required />
+      <input type="number" id="amount" placeholder="Kwota" required />
+      <button type="submit">Dodaj</button>
+    </form>
+    <table>
+      <thead>
+        <tr>
+          <th>Data</th>
+          <th>Kwota</th>
+          <th>Akcja</th>
+        </tr>
+      </thead>
+      <tbody id="noteList"></tbody>
+      <tfoot>
+        <tr>
+          <td><strong>Suma</strong></td>
+          <td id="total">0</td>
+          <td></td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+
+
+
+  <nav class="bottom-nav">
+    <a href="gosc.html" class="nav-item active">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+        <span>Główna</span>
+    </a>
+    <a href="#" class="nav-item">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+        <span>Opcja 2</span>
+    </a>
+    <a href="#" class="nav-item" id="theme-toggle">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        <span>Motyw</span>
+    </a>
+    <a href="#" class="nav-item">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        <span>Profil</span>
+    </a>
+    <a href="index.html" class="nav-item">
+        <svg class="w-[48px] h-[48px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12H4m12 0-4 4m4-4-4-4m3-4h2a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3h-2"/>
+          </svg>                  
+        <span>Wyloguj</span>
+    </a>
+</nav>
+</div>
+
+
+    <script src="script.js"></script>
+  <script>
+    const noteForm = document.getElementById("noteForm");
+    const noteList = document.getElementById("noteList");
+    const totalElement = document.getElementById("total");
+
+    let notes = JSON.parse(localStorage.getItem("notes") || "[]");
+
+    function renderNotes() {
+      noteList.innerHTML = "";
+      let total = 0;
+
+      notes.forEach((note, index) => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${note.date}</td>
+          <td>${parseFloat(note.amount).toFixed(2)}</td>
+          <td><button class="delete-btn" onclick="deleteNote(${index})">Usuń</button></td>
+        `;
+        noteList.appendChild(row);
+        total += parseFloat(note.amount);
+      });
+
+      totalElement.textContent = total.toFixed(2);
+    }
+
+    function deleteNote(index) {
+      notes.splice(index, 1);
+      localStorage.setItem("notes", JSON.stringify(notes));
+      renderNotes();
+    }
+
+    noteForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const date = document.getElementById("date").value;
+      const amount = document.getElementById("amount").value;
+      notes.push({ date, amount });
+      localStorage.setItem("notes", JSON.stringify(notes));
+      renderNotes();
+      noteForm.reset();
+    });
+
+    renderNotes();
+  </script>
+</body>
+</html>
