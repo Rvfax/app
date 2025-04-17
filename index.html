@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rvfax.app</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favico.ico">
+</head>
+<body id="body">
+    
+
+    <div class="container">
+        <header>
+            <h1>Rvfax.app</h1>
+        </header>
+        <center><h2>Zaloguj jako:</h2></center>
+        <main class="kafelki-container">
+            <a href="gosc.html" class="kafelek">
+                <svg class="w-[48px] h-[48px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                    <path fill-rule="evenodd" d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4h-4Z" clip-rule="evenodd"/>
+                  </svg>                                                                    
+                <span>Gość</span>
+            </a>
+            <div class="kafelek" onclick="login()">
+                <svg class="w-[48px] h-[48px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                    <path fill-rule="evenodd" d="M12 2c-.791 0-1.55.314-2.11.874l-.893.893a.985.985 0 0 1-.696.288H7.04A2.984 2.984 0 0 0 4.055 7.04v1.262a.986.986 0 0 1-.288.696l-.893.893a2.984 2.984 0 0 0 0 4.22l.893.893a.985.985 0 0 1 .288.696v1.262a2.984 2.984 0 0 0 2.984 2.984h1.262c.261 0 .512.104.696.288l.893.893a2.984 2.984 0 0 0 4.22 0l.893-.893a.985.985 0 0 1 .696-.288h1.262a2.984 2.984 0 0 0 2.984-2.984V15.7c0-.261.104-.512.288-.696l.893-.893a2.984 2.984 0 0 0 0-4.22l-.893-.893a.985.985 0 0 1-.288-.696V7.04a2.984 2.984 0 0 0-2.984-2.984h-1.262a.985.985 0 0 1-.696-.288l-.893-.893A2.984 2.984 0 0 0 12 2Zm3.683 7.73a1 1 0 1 0-1.414-1.413l-4.253 4.253-1.277-1.277a1 1 0 0 0-1.415 1.414l1.985 1.984a1 1 0 0 0 1.414 0l4.96-4.96Z" clip-rule="evenodd"/>
+                  </svg>                                           
+                <span>Admin</span>
+                </div>
+        </main>
+
+        <center><div id="login" style="display: none;">
+            <h1>Podaj Hasło</h1>
+    <form id="loginForm">
+        <div class="form-group">
+            <input type="password" id="password" name="password" required>
+        </div>
+        <button type="submit" class="btn">Zaloguj się</button>
+        <div id="message" class="message"></div>
+    </form>
+        </div></center>
+
+
+
+
+        <nav class="bottom-nav">
+            <a href="#" class="nav-item" id="theme-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                <span>Motyw</span>
+            </a>
+        </nav>
+    </div>
+
+
+
+
+
+
+    <script src="script.js"></script>
+    <script>
+    if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js')
+      .then(registration => {
+        console.log('Service Worker zarejestrowany!', registration);
+      })
+      .catch(error => {
+        console.log('Błąd rejestracji Service Worker:', error);
+      });
+  });
+}
+    </script>
+</body>
+</html>

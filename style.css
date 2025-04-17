@@ -1,0 +1,253 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding-bottom: 60px;
+    box-sizing: border-box;
+    background-color: #fff; /* Domyślny jasny motyw */
+    color: #333;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark-theme {
+    background-color: #1e1e1e; /* Ciemny motyw */
+    color: #f8f8f2;
+}
+
+body.dark-theme .kafelek {
+    background-color: #333;
+    color: #f0f0f0;
+}
+
+body.dark-theme .kafelek:hover {
+    background-color: #555;
+}
+
+body.dark-theme .bottom-nav {
+    background-color: #282828;
+    border-top: 1px solid #555;
+}
+
+body.dark-theme .bottom-nav a {
+    color: #bbb;
+}
+
+body.dark-theme .bottom-nav a.active {
+    color: #a6e3a1; /* Inny kolor akcentu dla ciemnego motywu */
+}
+
+body.dark-theme header {
+    border-bottom: 1px solid #555;
+}
+
+/* Reszta stylów z poprzedniej odpowiedzi pozostaje bez zmian */
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 20px;
+}
+
+/* Style dla kontenera kafelków */
+.kafelki-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Automatyczne dopasowanie kolumn */
+    gap: 15px; /* Odstępy między kafelkami */
+    padding: 20px; /* Wewnętrzne odstępy kontenera */
+}
+
+/* Podstawowe style dla każdego kafelka (linku) */
+.kafelek {
+    display: flex;
+    flex-direction: column; /* Elementy wewnątrz kafelka ułożone pionowo */
+    justify-content: center; /* Wyśrodkowanie zawartości w pionie */
+    align-items: center; /* Wyśrodkowanie zawartości w poziomie */
+    background-color: #f0f0f0; /* Jasnoszary tło */
+    color: #333; /* Ciemny kolor tekstu */
+    border-radius: 8px; /* Zaokrąglone rogi */
+    padding: 20px;
+    text-decoration: none; /* Usuwa podkreślenie linków */
+    text-align: center;
+    font-weight: bold;
+    transition: background-color 0.3s ease; /* Płynne przejście koloru tła */
+    height: 150px; /* Stała wysokość kafelka */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* Lekki cień */
+}
+
+.kafelek:hover {
+    background-color: #ddd; /* Jaśniejszy kolor tła po najechaniu kursorem */
+}
+
+/* Styl dla tekstu wewnątrz kafelka */
+.kafelek span {
+    font-size: 1.2em;
+}
+
+/* Możesz dodać style dla ikon, jeśli chcesz ich używać w kafelkach */
+.kafelek svg {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 10px;
+    fill: currentColor; /* Kolor ikony taki sam jak kolor tekstu */
+}
+
+/* Style dla ciemnego motywu kafelków */
+body.dark-theme .kafelek {
+    background-color: #333;
+    color: #f0f0f0;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-theme .kafelek:hover {
+    background-color: #555;
+}
+
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #f8f8f8;
+    border-top: 1px solid #eee;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    box-sizing: border-box;
+    z-index: 100;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #666;
+    text-decoration: none;
+    font-size: 0.8em;
+}
+
+.nav-item svg {
+    width: 24px;
+    height: 24px;
+    margin-bottom: 5px;
+    transition: fill 0.3s ease, stroke 0.3s ease; /* Animacja zmiany ikon */
+}
+
+body.dark-theme .nav-item svg {
+    fill: none !important; /* Jeśli ikony mają wypełnienie */
+    stroke: #bbb;
+}
+
+body.dark-theme .nav-item.active svg {
+    stroke: #a6e3a1;
+}
+
+.nav-item.active {
+    color: #007bff;
+}
+
+
+.cwiczenie{
+    background-color: rgba(86, 84, 84, 0.666);
+    border-radius: 3px;
+}
+
+body.dark-theme .cwiczenie{
+    background-color: rgba(255, 255, 255, 0.666);
+    border-radius: 3px;
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+a:visited {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:active {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+
+
+
+/* Styl Logowanie */
+
+#login {
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #f0f0f0;
+    color: #333;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); 
+    width: 300px;
+    text-align: center;
+}
+
+body.dark-theme #login{
+    background-color: #333;
+    color: #f0f0f0;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.btn {
+    background-color: #007bff;
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+.message {
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.message.success {
+    color: green;
+}
+
+.message.error {
+    color: red;
+}

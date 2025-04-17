@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rvfax.app</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favico.ico">
+
+    <style>
+        /* Dodatkowe style tylko dla tej strony */
+        main {
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f0f0f0;
+            font-weight: bold;
+        }
+
+        body.dark-theme th {
+            background-color: #333;
+            color: #f0f0f0;
+        }
+
+         /* Style dla rozwijanej zakładki */
+         details {
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        summary {
+            padding: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            background-color: #f8f8f8;
+            border-bottom: 1px solid #ddd;
+            border-radius: 4px 4px 0 0;
+        }
+
+        details[open] summary {
+            border-bottom: none;
+            border-radius: 4px 4px 0 0;
+        }
+
+        details div {
+            padding: 10px;
+        }
+
+        body.dark-theme details {
+            border-color: #555;
+            background-color: #282828;
+            color: #f0f0f0;
+        }
+
+        body.dark-theme summary {
+            background-color: #333;
+            color: #f0f0f0;
+            border-bottom-color: #555;
+        }
+    </style>
+</head>
+<body id="body">
+    <div class="container">
+
+
+        <header>
+            <h1>Plan Dnia</h1>
+        </header>
+        <main>
+            <h2>Szkoła</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Godzina</th>
+                        <th>Posiłek</th>
+                        <th>Przykład</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>7:30</td>
+                        <td>Śniadanie</td>
+                        <td>Wrap/kanapka albo zabierasz i zjadasz później</td>
+                    </tr>
+                    <tr>
+                        <td>11:00</td>
+                        <td>Szkoła</td>
+                        <td>Wrap, kanapka, jajka na twardo + warzywa + owoc/orzechy</td>
+                    </tr>
+                    <tr>
+                        <td>17:00</td>
+                        <td>Obiad</td>
+                        <td>Klasyczny</td>
+                    </tr>
+                    <tr>
+                        <td>21:00</td>
+                        <td>Kolacja</td>
+                        <td>Twaróg/wrap z białkiem + warzywa, lekkie pieczywo, jaja itp.</td>
+                    </tr>
+                    <tr>
+                        <td>???</td>
+                        <td>Przekąska</td>
+                        <td>Banan, orzechy / coś lekkiego na energię</td>
+                    </tr>
+                    <tr>
+                        <td>???</td>
+                        <td>Trening</td>
+                        <td>Plan Treningowy</td>
+                    </tr>
+                    <tr>
+                        <td>24:00</td>
+                        <td>Sen</td>
+                    </tr>
+                </tbody>
+            </table><br>
+            <h2>Weekend/Wolne</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Godzina</th>
+                        <th>Posiłek</th>
+                        <th>Przykład</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>12:00</td>
+                        <td>Śniadanie</td>
+                        <td>Wrap/kanapka albo zabierasz i zjadasz później</td>
+                    </tr>
+                    <tr>
+                        <td>17:00</td>
+                        <td>Obiad</td>
+                        <td>Klasyczny</td>
+                    </tr>
+                    <tr>
+                        <td>21:00</td>
+                        <td>Kolacja</td>
+                        <td>Twaróg/wrap z białkiem + warzywa, lekkie pieczywo, jaja itp.</td>
+                    </tr>
+                    <tr>
+                        <td>???</td>
+                        <td>Przekąska</td>
+                        <td>Banan, orzechy / coś lekkiego na energię</td>
+                    </tr>
+                    <tr>
+                        <td>???</td>
+                        <td>Trening</td>
+                        <td>Plan Treningowy</td>
+                    </tr>
+                    <tr>
+                        <td>24:00</td>
+                        <td>Sen</td>
+                    </tr>
+                </tbody>
+            </table><br>
+            <h2>Trening</h2>
+            <table>
+              <thead>
+                <tr>
+                  <th>Dzień</th>
+                  <th>Podstawowy</th>
+                  <th>Dodatkowy (3x każdy)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Pon</td>
+                  <td>Pompki + Brzuszki</td>
+                  <td>
+                    <span class="cwiczenie">Plank 30s</span><br>
+                    <span class="cwiczenie"><a href="#shoulder_taps">Shoulder Taps x20</a></span><br>
+                    <span class="cwiczenie"><a href="#oddychanie">Oddychanie przeponowe 2 min</a></span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Wt</td>
+                  <td>Brzuszki</td>
+                  <td>
+                    <span class="cwiczenie"><a href="#russian_twist">Russian Twist x20</a></span><br>
+                    <span class="cwiczenie"><a href="#heel_taps">Heel Taps x20</a></span><br>
+                    <span class="cwiczenie">Side Plank 30s na stronę</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Śr</td>
+                  <td>Pompki + Brzuszki</td>
+                  <td>
+                    <span class="cwiczenie"><a href="#standing_punches">Standing Punches 30s</a></span><br>
+                    <span class="cwiczenie"><a href="#wall_lean_hold">Wall Lean Hold 40s</a></span><br>
+                    <span class="cwiczenie">Plank 30s</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Czw</td>
+                  <td>Brzuszki</td>
+                  <td>
+                    <span class="cwiczenie"><a href="#hollow_hold">Hollow Hold 20s</a></span><br>
+                    <span class="cwiczenie"><a href="#twist">Twist + Dotyk Pięt x20</a></span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Pt</td>
+                  <td>Pompki + Brzuszki</td>
+                  <td>
+                    <span class="cwiczenie"><a href="#shoulder_taps">Shoulder Taps x20</a></span><br>
+                    <span class="cwiczenie"><a href="#slow_twist_hold">Slow Twist Hold (skręty tułowia w siadzie) x12</a></span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Sob</td>
+                  <td>Brzuszki</td>
+                  <td>
+                    <span class="cwiczenie"><a href="#spacer">Spacer / mobilizacja barków</a></span><br>
+                    <span class="cwiczenie">Side Plank 30s na stronę</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Nd</td>
+                  <td>Odpoczynek</td>
+                  <td>
+                    <span class="cwiczenie">Lekkie rozciąganie + oddech głęboki do 10 min (opcjonalnie)</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <br>
+              
+
+
+              <details>
+                <summary>Ćwiczenia</summary>
+                <div>
+                    <br><table>
+                        <thead>
+                          <tr>
+                            <th>Ćwiczenie</th>
+                            <th>Opis</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                          <tr>
+                            <td id="shoulder_taps">Shoulder Taps (Dotknięcia ramion)</td>
+                            <td>Ćwiczenie angażujące mięśnie brzucha, ramion i core. Rozpocznij w pozycji do pompki. Dotknij lewą dłonią prawego ramienia, a następnie prawą dłonią lewego ramienia. Staraj się utrzymać stabilność ciała i nie kołysać biodrami podczas dotykania ramion.</td>
+                          </tr>
+                          <tr>
+                            <td id="russian_twist">Russian Twist</td>
+                            <td>Ćwiczenie na mięśnie skośne brzucha. Usiądź na podłodze z nogami lekko ugiętymi w kolanach. Trzymaj ręce razem przed sobą, a następnie obracaj tułów w lewo, a potem w prawo. Stopy powinny być uniesione nad ziemią, aby ćwiczenie było trudniejsze, ale jeśli nie masz równowagi, możesz trzymać stopy na ziemi.</td>
+                          </tr>
+                          <tr>
+                            <td id="heel_taps">Heel Taps</td>
+                            <td>Połóż się na plecach z ugiętymi nogami. Podnieś ręce i dotykaj raz jednej, raz drugiej pięty, przekładając ciało w lewo i prawo. Ćwiczenie angażuje dolne partie brzucha.</td>
+                          </tr>
+                          <tr>
+                            <td id="standing_punches">Standing Punches (Uderzenia w stojąc)</td>
+                            <td>Stań prosto, z lekko ugiętymi nogami. Napnij brzuch i zacznij wymachy rąk jak podczas boksowania, naprzemiennie prawe i lewe. Ruch powinien wychodzić z całego ciała, nie tylko z rąk.</td>
+                          </tr>
+                          <tr>
+                            <td id="wall_lean_hold">Wall Lean Hold</td>
+                            <td>Stań plecami do ściany, zegnij kolana i oprzyj się plecami na ścianie. Utrzymuj pozycję przez określony czas, starając się nie opadać w dół ani nie przesuwać.</td>
+                          </tr>
+                          <tr>
+                            <td id="hollow_hold">Hollow Hold</td>
+                            <td>Połóż się na plecach, unieś nogi i górną część ciała, tworząc kształt "łodzi". Utrzymuj tę pozycję, napinając brzuch i pilnując, by plecy nie dotykały ziemi.</td>
+                          </tr>
+                          <tr>
+                            <td id="twist">Twist + Dotyk Pięt</td>
+                            <td>Leżąc na plecach, zgiń nogi w kolanach. Dłońmi dotykaj na przemian prawej i lewej pięty, obracając tułów w kierunku ręki, którą dotykasz.</td>
+                          </tr>
+                          <tr>
+                            <td id="slow_twist_hold">Slow Twist Hold</td>
+                            <td>Usiądź na podłodze, nogi lekko zgięte, a ręce wyciągnięte do przodu. Skręcaj tułów w lewo i prawo, trzymając ręce na wysokości klatki piersiowej. Staraj się robić to w kontrolowany sposób, napinając mięśnie brzucha.</td>
+                          </tr>
+                          <tr>
+                            <td id="spacer">Spacer / Mobilizacja barków</td>
+                            <td>Stań prosto, a potem wykonuj okrężne ruchy rękami w przód i w tył. Zmieniaj kierunek co kilka sekund. To ćwiczenie pomaga w rozluźnieniu barków po intensywnych ćwiczeniach.</td>
+                          </tr>
+                          <tr>
+                            <td id="oddychanie">Oddychanie przeponowe</td>
+                            <td>Usadź się wygodnie, zamknij oczy i skup się na głębokim oddychaniu. Wdychaj powietrze głęboko przez nos, napinając przeponę, a następnie wydychaj przez usta. Stosuj tę technikę przez 2 minuty.</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      
+                </div>
+            </details>
+
+            </main>
+            
+
+
+
+    <nav class="bottom-nav">
+        <a href="admin.html" class="nav-item active">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+            <span>Główna</span>
+        </a>
+        <a href="#" class="nav-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+            <span>Opcja 2</span>
+        </a>
+        <a href="#" class="nav-item" id="theme-toggle">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            <span>Motyw</span>
+        </a>
+        <a href="#" class="nav-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            <span>Profil</span>
+        </a>
+        <a href="index.html" class="nav-item">
+          <svg class="w-[48px] h-[48px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12H4m12 0-4 4m4-4-4-4m3-4h2a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3h-2"/>
+            </svg>                  
+          <span>Wyloguj</span>
+      </a>
+    </nav>
+    </div>
+
+
+    <script src="script.js"></script>
+</body>
+</html>
