@@ -1,41 +1,27 @@
-const cacheName = 'rvfax-app-v1';
-const staticAssets = [
+const CACHE_NAME = 'rvfax-app-v1';
+const urlsToCache = [
   '/',
   'index.html',
   'style.css',
   'script.js',
+  'gosc.html',
+  'admin.html',
+  'Rfit.html',
   'favico.ico'
 ];
 
-self.addEventListener('install', async () => {
-  const cache = await caches.open(cacheName);
-  await cache.addAll(staticAssets);
+self.addEventListener('install', (event) => {
+  event.waitUntil(
+    caches.open(CACHE_NAME).then((cache) => {
+      return cache.addAll(urlsToCache);
+    })
+  );
 });
 
-self.addEventListener('fetch', event => {
-  const req = event.request;
-  const url = new URL(req.url);
-  if (url.origin === location.origin) {
-    event.respondWith(cacheFirst(req));
-  } else {
-    event.respondWith(networkFirst(req));
-  }
+self.addEventListener('fetch', (event) => {
+  event.respondWith(
+    caches.match(event.request).then((resp) => {
+      return resp || fetch(event.request);
+    })
+  );
 });
-
-async function cacheFirst(req) {
-  const cache = await caches.open(cacheName);
-  const cachedResponse = await cache.match(req);
-  return cachedResponse || fetch(req);
-}
-
-async function networkFirst(req) {
-  const cache = await caches.open(cacheName);
-  try {
-    const freshResponse = await fetch(req);
-    cache.put(req, freshResponse.clone());
-    return freshResponse;
-  } catch (e) {
-    const cachedResponse = await cache.match(req);
-    return cachedResponse;
-  }
-}
