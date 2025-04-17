@@ -198,48 +198,91 @@
 
 
     <script src="script.js"></script>
-  <script>
-    const noteForm = document.getElementById("noteForm");
-    const noteList = document.getElementById("noteList");
-    const totalElement = document.getElementById("total");
-
-    let notes = JSON.parse(localStorage.getItem("notes") || "[]");
-
-    function renderNotes() {
-      noteList.innerHTML = "";
-      let total = 0;
-
-      notes.forEach((note, index) => {
-        const row = document.createElement("tr");
-        row.innerHTML = `
-          <td>${note.date}</td>
-          <td>${parseFloat(note.amount).toFixed(2)}</td>
-          <td><button class="delete-btn" onclick="deleteNote(${index})">Usuń</button></td>
-        `;
-        noteList.appendChild(row);
-        total += parseFloat(note.amount);
-      });
-
-      totalElement.textContent = total.toFixed(2);
-    }
-
-    function deleteNote(index) {
-      notes.splice(index, 1);
-      localStorage.setItem("notes", JSON.stringify(notes));
-      renderNotes();
-    }
-
-    noteForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const date = document.getElementById("date").value;
-      const amount = document.getElementById("amount").value;
-      notes.push({ date, amount });
-      localStorage.setItem("notes", JSON.stringify(notes));
-      renderNotes();
-      noteForm.reset();
-    });
-
-    renderNotes();
-  </script>
+    <script>
+        const dbName = "NotesDB";
+        const storeName = "notes";
+        const noteForm = document.getElementById("noteForm");
+        const noteList = document.getElementById("noteList");
+        const totalElement = document.getElementById("total");
+      
+        async function openDatabase() {
+          return new Promise((resolve, reject) => {
+            const request = indexedDB.open(dbName, 1);
+      
+            request.onupgradeneeded = (event) => {
+              const db = event.target.result;
+              if (!db.objectStoreNames.contains(storeName)) {
+                db.createObjectStore(storeName, { keyPath: "id", autoIncrement: true });
+              }
+            };
+      
+            request.onsuccess = () => resolve(request.result);
+            request.onerror = () => reject(request.error);
+          });
+        }
+      
+        async function addNoteToDB(note) {
+          const db = await openDatabase();
+          const tx = db.transaction(storeName, "readwrite");
+          const store = tx.objectStore(storeName);
+          await store.add(note);
+          await tx.complete;
+        }
+      
+        async function getAllNotes() {
+          const db = await openDatabase();
+          const tx = db.transaction(storeName, "readonly");
+          const store = tx.objectStore(storeName);
+          return new Promise((resolve, reject) => {
+            const request = store.getAll();
+            request.onsuccess = () => resolve(request.result);
+            request.onerror = () => reject(request.error);
+          });
+        }
+      
+        async function deleteNoteFromDB(id) {
+          const db = await openDatabase();
+          const tx = db.transaction(storeName, "readwrite");
+          const store = tx.objectStore(storeName);
+          store.delete(id);
+          await tx.complete;
+        }
+      
+        async function renderNotes() {
+          const notes = await getAllNotes();
+          noteList.innerHTML = "";
+          let total = 0;
+      
+          notes.forEach(note => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+              <td>${note.date}</td>
+              <td>${parseFloat(note.amount).toFixed(2)}</td>
+              <td><button class="delete-btn" onclick="deleteNote(${note.id})">Usuń</button></td>
+            `;
+            noteList.appendChild(row);
+            total += parseFloat(note.amount);
+          });
+      
+          totalElement.textContent = total.toFixed(2);
+        }
+      
+        async function deleteNote(id) {
+          await deleteNoteFromDB(id);
+          await renderNotes();
+        }
+      
+        noteForm.addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const date = document.getElementById("date").value;
+          const amount = document.getElementById("amount").value;
+          await addNoteToDB({ date, amount });
+          await renderNotes();
+          noteForm.reset();
+        });
+      
+        renderNotes();
+      </script>
+      
 </body>
 </html>
