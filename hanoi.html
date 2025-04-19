@@ -101,6 +101,42 @@
     h1{
         margin: 10px;
     }
+
+    details {
+        margin-top: 20px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+    }
+
+    summary {
+        padding: 10px;
+        cursor: pointer;
+        font-weight: bold;
+        background-color: #f8f8f8;
+        border-bottom: 1px solid #ddd;
+        border-radius: 4px 4px 0 0;
+    }
+
+    details[open] summary {
+            border-bottom: none;
+            border-radius: 4px 4px 0 0;
+        }
+
+        details div {
+            padding: 10px;
+        }
+
+        body.dark-theme details {
+            border-color: #555;
+            background-color: #282828;
+            color: #f0f0f0;
+        }
+
+        body.dark-theme summary {
+            background-color: #333;
+            color: #f0f0f0;
+            border-bottom-color: #555;
+        }
   </style>
 </head>
 <body id="body">
@@ -127,7 +163,12 @@
     <div id="tower2" class="tower"></div>
     <div id="tower3" class="tower"></div>
   </div>
-  <br><br>
+  <details><summary>Zasady</summary>
+    <div>
+    Należy przenieść stos krążków z pierwszego kontenera do ostatniego, wykorzystując środkowy kontener jako pomocniczy, przestrzegając trzech głównych reguł. Możesz przenieść tylko jeden krążek na raz. Nie możesz umieszczać większego krążka na mniejszym. Krążki muszą być przenoszone tylko z wierzchu jednego na wierzch innego kontenera.
+    </div>
+  </details>
+  <br><br><br>
         </main>
         <nav class="bottom-nav">
             <a href="gosc.html" class="nav-item active">
