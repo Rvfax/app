@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rvfax.app</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favico.ico">
+    <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      margin: 20px 0;
+    }
+    /* Styl głównego kontenera gry */
+    .game-container {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end; /* Wieże wyrównane do dołu */
+      height: 60vh;
+      margin: 20px;
+    }
+    /* Styl wież – podstawowe ustawienia na większe ekrany */
+    .tower {
+      min-width: 100px;
+      height: 300px;
+      margin: 0 10px;
+      display: flex;
+      flex-direction: column-reverse;
+      align-items: center;
+      border-radius: 10px;
+      padding: 5px;
+      position: relative;
+      background-color: #e1e1e1;
+      color: #333;
+      transition: background-color 0.3s ease;
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    body.dark-theme .tower{
+        background-color: #333;
+        color: #f0f0f0;
+    }
+    /* Styl klocków */
+    .disk {
+      height: 20px;
+      margin: 2px 0;
+      text-align: center;
+      color: white;
+      font-weight: bold;
+      cursor: grab;
+      user-select: none;
+      position: relative;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    .selected {
+      opacity: 0.7;
+    }
+    /* Responsywność – dla ekranów o szerokości do 600px */
+    @media screen and (max-width: 600px) {
+      .game-container {
+        flex-direction: column;
+        height: auto;
+        margin: 5px;
+      }
+      .tower {
+        min-width: 110px;
+        height: 155px;
+        margin: 3px auto;
+      }
+      .disk {
+        height: 16px;
+        margin: 1px 0;
+        font-size: 12px;
+      }
+    }
+
+    #diskCount{
+        padding: 5px;
+        border-radius: 5px;
+        border: 2px solid black;
+    }
+
+    #resetButton{
+        padding: 5px;
+        border-radius: 5px;
+        border: 2px solid black;
+        background-color: rgb(255, 149, 0);
+    }
+    
+    header{
+        padding-bottom: 0px;
+        margin-bottom: 8px;
+    }
+
+    h1{
+        margin: 10px;
+    }
+  </style>
+</head>
+<body id="body">
+    
+
+    <div class="container">
+        <header>
+            <h1>Rvfax.app</h1>
+        </header>
+        <main>
+  <label for="diskCount">Liczba klocków:</label>
+  <select id="diskCount">
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+    <option value="8">8</option>
+  </select>
+  <button id="resetButton">Reset</button>
+  <h3 id="message"></h3>
+  <div class="game-container" id="game-container">
+    <div id="tower1" class="tower"></div>
+    <div id="tower2" class="tower"></div>
+    <div id="tower3" class="tower"></div>
+  </div>
+  <br><br>
+        </main>
+        <nav class="bottom-nav">
+            <a href="gosc.html" class="nav-item active">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                <span>Główna</span>
+            </a>
+            <a href="#" class="nav-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+                <span>Opcja 2</span>
+            </a>
+            <a href="#" class="nav-item" id="theme-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                <span>Motyw</span>
+            </a>
+            <a href="#" class="nav-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                <span>Profil</span>
+            </a>
+            <a href="index.html" class="nav-item">
+                <svg class="w-[48px] h-[48px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12H4m12 0-4 4m4-4-4-4m3-4h2a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3h-2"/>
+                  </svg>                  
+                <span>Wyloguj</span>
+            </a>
+        </nav>
+    </div>
+
+
+
+
+    <script src="script.js"></script>
+    <script>
+        // Zmienne dla obsługi przeciągania i dotyku
+        let currentDragged = null; // dla drag&drop na PC
+        let touchDrag = { active: false, disk: null, originalTower: null, offsetX: 0, offsetY: 0 };
+    
+        document.addEventListener("DOMContentLoaded", function () {
+          document.getElementById("diskCount").addEventListener("change", resetGame);
+          document.getElementById("resetButton").addEventListener("click", resetGame);
+          resetGame();
+        });
+    
+        function resetGame() {
+          const numDisks = parseInt(document.getElementById("diskCount").value);
+          const towers = document.querySelectorAll(".tower");
+          const tower1 = document.getElementById("tower1");
+          const message = document.getElementById("message");
+          message.textContent = "";
+          towers.forEach(tower => tower.innerHTML = "");
+          for (let i = numDisks; i > 0; i--) {
+            let disk = document.createElement("div");
+            disk.classList.add("disk");
+            disk.setAttribute("data-size", i);
+            disk.style.width = (i * 20 + 40) + "px";
+            disk.style.backgroundColor = `hsl(${i * 40}, 80%, 50%)`; // każdy klocek innego koloru
+            disk.textContent = i;
+            disk.draggable = true;
+            // Drag & drop dla PC
+            disk.addEventListener("dragstart", dragStart);
+            disk.addEventListener("dragend", dragEnd);
+            // Obsługa dotyku dla urządzeń mobilnych
+            disk.addEventListener("touchstart", touchStart, { passive: false });
+            disk.addEventListener("touchmove", touchMove, { passive: false });
+            disk.addEventListener("touchend", touchEnd);
+            tower1.appendChild(disk);
+            
+          }
+        }
+    
+        // Drag & drop na PC
+        document.querySelectorAll(".tower").forEach(tower => {
+          tower.addEventListener("dragover", function(e) {
+            e.preventDefault();
+          });
+          tower.addEventListener("drop", dropHandler);
+        });
+    
+        function dragStart(e) {
+          // Pozwalamy przeciągać tylko górny klocek
+          if (e.target !== e.target.parentElement.lastElementChild) {
+            e.preventDefault();
+            return;
+          }
+          currentDragged = e.target;
+          e.dataTransfer.setData("text/plain", e.target.getAttribute("data-size"));
+        }
+    
+        function dragEnd(e) {
+          currentDragged = null;
+        }
+    
+        function dropHandler(e) {
+          e.preventDefault();
+          if (!currentDragged) return;
+          const tower = e.currentTarget;
+          let topDisk = tower.lastElementChild;
+          if (!topDisk || parseInt(currentDragged.getAttribute("data-size")) < parseInt(topDisk.getAttribute("data-size"))) {
+            tower.appendChild(currentDragged);
+            checkWin();
+          }
+          currentDragged = null;
+        }
+    
+        // Obsługa dotyku dla urządzeń mobilnych
+        function touchStart(e) {
+          e.preventDefault();
+          let disk = e.target;
+          // Pozwalamy przeciągać tylko górny klocek
+          if (disk !== disk.parentElement.lastElementChild) return;
+          touchDrag.active = true;
+          touchDrag.disk = disk;
+          touchDrag.originalTower = disk.parentElement;
+          let touch = e.touches[0];
+          let rect = disk.getBoundingClientRect();
+          touchDrag.offsetX = touch.clientX - rect.left;
+          touchDrag.offsetY = touch.clientY - rect.top;
+          disk.classList.add("selected");
+        }
+    
+        function touchMove(e) {
+          if (!touchDrag.active || !touchDrag.disk) return;
+          e.preventDefault();
+          let touch = e.touches[0];
+          let disk = touchDrag.disk;
+          // Ustawiamy fixed, aby klocek był widoczny na całym ekranie podczas przesuwania
+          disk.style.position = "fixed";
+          disk.style.zIndex = "1000";
+          disk.style.left = (touch.clientX - touchDrag.offsetX) + "px";
+          disk.style.top = (touch.clientY - touchDrag.offsetY) + "px";
+        }
+    
+        function touchEnd(e) {
+          if (!touchDrag.active || !touchDrag.disk) return;
+          e.preventDefault();
+          let touch = e.changedTouches[0];
+          let droppedTower = null;
+          document.querySelectorAll(".tower").forEach(tower => {
+            let rect = tower.getBoundingClientRect();
+            if (touch.clientX >= rect.left && touch.clientX <= rect.right &&
+                touch.clientY >= rect.top && touch.clientY <= rect.bottom) {
+              droppedTower = tower;
+            }
+          });
+          let disk = touchDrag.disk;
+          if (droppedTower) {
+            let topDisk = droppedTower.lastElementChild;
+            if (!topDisk || parseInt(disk.getAttribute("data-size")) < parseInt(topDisk.getAttribute("data-size"))) {
+              droppedTower.appendChild(disk);
+              checkWin();
+            } else {
+              touchDrag.originalTower.appendChild(disk);
+            }
+          } else {
+            touchDrag.originalTower.appendChild(disk);
+          }
+          disk.style.position = "";
+          disk.style.zIndex = "";
+          disk.style.left = "";
+          disk.style.top = "";
+          disk.classList.remove("selected");
+          touchDrag.active = false;
+          touchDrag.disk = null;
+          touchDrag.originalTower = null;
+        }
+    
+        function checkWin() {
+          const numDisks = parseInt(document.getElementById("diskCount").value);
+          const tower3 = document.getElementById("tower3");
+          if (tower3.childElementCount === numDisks) {
+            document.getElementById("message").textContent = "Gratulacje! Ukończyłeś łamigłówkę!";
+            document.getElementById("message").style.color = "lime";
+          }
+        }
+    </script>
+</body>
+</html>
