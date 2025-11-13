@@ -1,4 +1,4 @@
-const CACHE_NAME = 'rvfax-app-v2.3';
+const CACHE_NAME = 'rvfax-app-v2.4';
 const urlsToCache = [
   '/',
   'index.html',
@@ -40,4 +40,5 @@ self.addEventListener('activate', event => {
     )
   );
 });
+
 
