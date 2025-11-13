@@ -1,0 +1,228 @@
+/* === USTAWIENIA OGÓLNE === */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #f4f4f4;
+    color: #222;
+}
+
+/* === STRONA GŁÓWNA === */
+header {
+    background: #1e90ff;
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    letter-spacing: 1px;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding: 40px 20px;
+}
+
+.subject {
+    background: white;
+    width: 250px;
+    height: 150px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.4rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: #1e90ff;
+}
+
+.subject:hover {
+    transform: translateY(-5px);
+    background: #1e90ff;
+    color: white;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+/* === PODSTRONY (np. polski.html) === */
+body.subpage {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Pasek boczny */
+nav {
+    width: 220px;
+    background: #1e90ff;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+nav h2 {
+    margin-top: 0;
+    text-align: center;
+    font-size: 1.4rem;
+}
+
+/* Przyciski w menu */
+nav button {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: none;
+    padding: 12px 15px;
+    border-radius: 8px;
+    margin: 6px 0;
+    font-size: 1rem;
+    text-align: left;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+nav button:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateX(5px);
+}
+
+/* Główna treść podstrony */
+main.subpage-content {
+    flex: 1;
+    padding: 30px;
+    width: 95%;
+}
+
+section {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    padding: 20px;
+    margin-bottom: 25px;
+}
+
+section.jawne{
+    width: 100%;
+    height: 90%;
+    text-align: center;
+}
+
+section.jawne h2{
+    text-align: center;
+}
+
+section.jawne{
+    display: none;
+}
+
+section.jawne.active {
+    display: block;
+}
+
+.nav-active {
+  background-color: green !important;
+}
+
+/* === LISTY === */
+section ol {
+    list-style: decimal;
+    list-style-position: inside; /* numery w środku tła */
+    padding-left: 0;
+    margin: 15px 0;
+}
+
+section ol li {
+    background: #f8f9ff;
+    margin: 10px 0;
+    padding: 12px 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    transition: 0.25s;
+    line-height: 1.5;
+}
+
+section ol li:hover {
+    background: #e8f2ff;
+    transform: translateX(5px);
+    cursor: pointer;
+}
+
+/* === ROZWIJANE ODPOWIEDZI === */
+.answer {
+    display: none;
+    margin-top: 10px;
+    background: #eef5ff;
+    padding: 12px 15px;
+    border-left: 4px solid #1e90ff;
+    border-radius: 8px;
+    color: #333;
+    font-size: 0.95rem;
+    text-align: left;
+}
+
+li.open .answer {
+    display: block;
+}
+
+li.open {
+    background: #e8f2ff;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+}
+
+section h1 {
+    margin-top: 0;
+    color: #1e90ff;
+}
+
+section h2 {
+    margin-top: 0;
+    color: #1e90ff;
+}
+
+/* Przyciski w treści (np. quiz) */
+main button {
+    background: #1e90ff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+main button:hover {
+    background: #006fd6;
+}
+
+/* === RESPONSYWNOŚĆ === */
+@media (max-width: 800px) {
+    body.subpage {
+        flex-direction: column;
+    }
+
+    nav {
+        width: 100%;
+        flex-direction: row;
+        overflow-x: auto;
+        justify-content: space-around;
+    }
+
+    nav button {
+        flex: 1;
+        text-align: center;
+        margin: 5px;
+    }
+}
